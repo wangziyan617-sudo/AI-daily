@@ -417,7 +417,7 @@ def push_to_feishu(categorized: dict, today: str, page_url: str):
 # 6. 生成 HTML 日报页面
 # ============================================================
 
-GITHUB_PAGES_URL = "https://wangziyan617-sudo.github.io/ai-daily"
+GITHUB_PAGES_URL = "https://wangziyan617-sudo.github.io/AI-daily"
 
 def generate_html(categorized: dict, today: str) -> str:
     """生成一天的日报 HTML 页面"""
