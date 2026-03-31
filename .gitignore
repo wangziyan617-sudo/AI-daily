@@ -1,0 +1,12 @@
+# 密钥文件，绝对不能上传
+.env
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# 编辑器
+.claude/
