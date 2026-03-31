@@ -4,9 +4,8 @@ AI 媒体信息自动抓取 & 推送脚本
 数据来源：
   1. arXiv 学术论文 (cs.AI 分类)
   2. 微信公众号文章 (通过搜狗微信搜索)
-  3. 小红书关键词内容 (通过搜狗微信搜索)
 
-流程：抓取 -> 过滤(24h内) -> 去重 -> LLM摘要 -> 推送企业微信/飞书
+流程：抓取 -> 过滤(24h内) -> 去重 -> LLM摘要 -> 生成HTML存档 -> 推送飞书
 """
 
 import os
@@ -51,7 +50,10 @@ PRIORITY_ACCOUNTS = [
     "36氪",
     "AI前线",
     "新智元",
-    # 继续添加你关注的公众号...
+    "通往AGI之路",
+    "AI科技评论",
+    "智东西",
+    "数字生命卡兹克",
 ]
 
 # ---- 通用关键词搜索（普通权重，覆盖更广）----
@@ -273,39 +275,43 @@ def summarize_with_llm(items: list[dict]) -> str:
         log.warning("未配置 MINIMAX_API_KEY，跳过 LLM 摘要，直接输出原始标题")
         return _format_raw(items)
 
-    # MiniMax Anthropic 兼容端点（超时设为 120 秒，处理长 prompt）
+    # MiniMax Anthropic 兼容端点（超时 300 秒，处理长 prompt）
     client = anthropic.Anthropic(
         api_key=MINIMAX_API_KEY,
         base_url="https://api.minimaxi.com/anthropic",
-        timeout=120,
+        timeout=300,
     )
 
     # 构建输入文本，高权重内容标注 [重点]
-    # 先按 priority 分组，每组最多取 5 条，减少 prompt 长度
-    priority_items = [it for it in items if it.get("priority")][:5]
-    other_items = [it for it in items if not it.get("priority")][:10]
+    # 重点公众号取 6 条，其他取 12 条，平衡信息量和 API 处理时间
+    priority_items = [it for it in items if it.get("priority")][:6]
+    other_items = [it for it in items if not it.get("priority")][:12]
     filtered = priority_items + other_items
 
     content_text = ""
     for i, item in enumerate(filtered, 1):
         tag = "【重点公众号】" if item.get("priority") else "【关键词搜索】"
+        # 清理特殊字符，防止破坏 JSON
+        clean_title = item['title'][:150].replace('"', '\\"').replace('\n', ' ')
+        clean_abstract = item['abstract'][:200].replace('"', '\\"').replace('\n', ' ')
+        clean_url = item['url'].replace('\n', ' ')
         content_text += (
-            f"\n[{i}] {tag} 来源: {item['source']}\n"
-            f"标题: {item['title']}\n"
-            f"摘要: {item['abstract'][:200]}\n"
-            f"链接: {item['url']}\n"
+            "\n[" + str(i) + "] " + tag + " 来源: " + item["source"] + "\n"
+            "标题: " + clean_title + "\n"
+            "摘要: " + clean_abstract + "\n"
+            "链接: " + clean_url
         )
 
-    prompt = f"""你是一位服务于业务分析师团队的 AI 信息助手。
+    prompt = f"""你是一位服务于业务分析师团队的 AI 信息助手，负责为团队挑选和解读最有价值的 AI 资讯。
 以下是今日从 arXiv、微信公众号抓取的 AI 相关内容，每条标注了【重点公众号】或【关键词搜索】。
 
-请完成以下任务：
-1. 优先选取【重点公众号】的内容，再补充【关键词搜索】中有价值的内容，共保留 8 条以内
+请完成以下任务（全程用中文输出，除了 AI、arXiv、PDF、API 等专业术语保留英文）：
+1. 优先选取【重点公众号】的内容，再补充【关键词搜索】中有价值的内容，共保留 15 条以内
 2. 将每条内容归入以下三个类别之一：
-   - 🔬 AI底层技术：模型进展、论文、架构创新、训练方法等
-   - 🛠 AI工具应用：效率工具、工作流、Prompt技巧、实操教程等
-   - 💰 AI商业变现：商业案例、行业落地、产品发布、市场动态等
-3. 对每条内容用 2 句话总结：是什么 + 业务分析师怎么用
+   - 🔬 AI底层技术：模型进展、论文成果、架构创新、训练方法突破等
+   - 🛠 效率工具：效率提升工具、工作流技巧、实操教程、Prompt 方法等
+   - 💰 AI商业变现：具体公司/创业者通过 AI 赚到真金白银的案例，包含收入数据、用户增长、商业模式等
+3. 对每条内容用 2 句话总结：这件事是什么 + 对业务分析师有什么参考价值
 4. 严格按以下 JSON 格式输出，不要输出其他任何内容：
 
 {{
@@ -313,6 +319,7 @@ def summarize_with_llm(items: list[dict]) -> str:
     {{"title": "文章标题", "summary": "2句话摘要", "url": "链接", "priority": true或false}},
     ...
   ],
+  "AI底层技术": [...],
   "AI工具应用": [...],
   "AI商业变现": [...]
 }}
@@ -324,19 +331,50 @@ def summarize_with_llm(items: list[dict]) -> str:
         log.info("调用 MiniMax M2.7 生成摘要...")
         response = client.messages.create(
             model="MiniMax-M2.7",
-            max_tokens=3000,
+            max_tokens=2500,
             messages=[{"role": "user", "content": prompt}],
         )
         # M2.7 是思考模型，找第一个 TextBlock
         raw = next(b.text for b in response.content if hasattr(b, "text"))
-        # 提取 JSON（去掉可能的 markdown 代码块包裹）
+        log.info(f"LLM 原始返回（前300字）: {raw[:300]}")
+        # 去掉 markdown 代码块包裹
+        raw = re.sub(r'^```json\s*', '', raw, flags=re.MULTILINE).strip()
+        raw = re.sub(r'^```\s*$', '', raw, flags=re.MULTILINE).strip()
+        # 提取 JSON
         json_str = re.search(r'\{[\s\S]+\}', raw)
         if not json_str:
+            log.error(f"LLM 返回非 JSON 内容: {raw[:200]}")
             raise ValueError("LLM 未返回有效 JSON")
-        return json.loads(json_str.group())
+        try:
+            return json.loads(json_str.group())
+        except json.JSONDecodeError as je:
+            # 尝试修复：把未转义的引号替换掉
+            try:
+                fixed = _fix_json(json_str.group())
+                return json.loads(fixed)
+            except Exception:
+                log.error(f"JSON 解析失败: {je}")
+                log.error(f"问题位置附近: {raw[max(0,je.pos-50):je.pos+100]}")
+                raise
     except Exception as e:
         log.error(f"LLM 调用失败: {e}")
         return None
+
+
+def _fix_json(text: str) -> str:
+    """尝试修复常见 JSON 格式错误"""
+    # 把 value 里未转义的 " 替换成转义字符
+    # 思路：把不在 JSON 语法位置的双引号转义
+    lines = text.split('\n')
+    fixed_lines = []
+    for line in lines:
+        # 去掉行尾的逗号（如果后面是 }] 的话）
+        stripped = line.rstrip()
+        fixed_lines.append(stripped)
+    result = '\n'.join(fixed_lines)
+    # 简单替换：把 "url": " 后面的未转义双引号修复
+    result = re.sub(r'(["\s])""', r'\1\\"', result)
+    return result
 
 
 def _format_raw(items: list[dict]) -> str:
@@ -479,10 +517,59 @@ def generate_html(categorized: dict, today: str) -> str:
 </html>"""
 
 
+def generate_index_html(reports: list[tuple], today: str, today_url: str) -> str:
+    """生成首页：展示今日日报 + 所有历史存档"""
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    rows = ""
+    for date, url in reports:
+        mark = "（今日）" if date == today_str else ""
+        rows += f'<li><a href="{url}">{date} {mark}</a></li>'
+
+    return f"""<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 历史存档</title>
+<style>
+  body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+         max-width: 680px; margin: 0 auto; padding: 40px 24px; background: #f5f5f7; color: #1d1d1f; }}
+  h1 {{ font-size: 32px; font-weight: 700; margin-bottom: 8px; }}
+  .subtitle {{ color: #6e6e73; font-size: 14px; margin-bottom: 32px; }}
+  .today-card {{ background: #0071e3; border-radius: 16px; padding: 24px; margin-bottom: 32px; }}
+  .today-card a {{ color: #fff; font-size: 18px; font-weight: 600; text-decoration: none; display: block; }}
+  .today-card .today-label {{ color: rgba(255,255,255,0.7); font-size: 13px; margin-bottom: 8px; }}
+  h2 {{ font-size: 13px; font-weight: 600; margin: 32px 0 16px; color: #6e6e73; text-transform: uppercase; letter-spacing: 1px; }}
+  ul {{ list-style: none; padding: 0; }}
+  li a {{ display: block; background: #fff; padding: 14px 20px; border-radius: 10px;
+           margin-bottom: 8px; text-decoration: none; color: #1d1d1f;
+           box-shadow: 0 1px 4px rgba(0,0,0,.06); font-size: 15px; }}
+  li a:hover {{ background: #f0f0f5; }}
+</style>
+</head>
+<body>
+<h1>🤖 AI 日报</h1>
+<div class="subtitle">工作日 10:00 自动更新 · 由 MiniMax M2.7 生成摘要</div>
+
+<div class="today-card">
+  <div class="today-label">今日 · {today_str}</div>
+  <a href="{today_url}">查看今日 AI 日报 →</a>
+</div>
+
+<h2>历史日报</h2>
+<ul>
+{rows}
+</ul>
+</body>
+</html>"""
+
+
 def save_html(categorized: dict, today: str):
-    """将 HTML 写入 docs/ 目录（GitHub Pages 默认读取此目录）"""
+    """将 HTML 写入 docs/ 目录，并更新包含历史存档的 index.html"""
     os.makedirs("docs", exist_ok=True)
-    html = generate_html(categorized, today)
+
+    today_url = f"./{today}.html"
+    html = generate_html(categorized, today, GITHUB_PAGES_URL + "/" + today + ".html")
 
     # 今日文件
     filepath = f"docs/{today}.html"
@@ -490,20 +577,22 @@ def save_html(categorized: dict, today: str):
         f.write(html)
     log.info(f"HTML 日报已生成: {filepath}")
 
-    # 更新首页 index.html（重定向到今日日报）
-    index = f"""<!DOCTYPE html>
-<html lang="zh">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; url=./{today}.html">
-<title>AI 日报</title>
-</head>
-<body>
-<p>正在跳转到今日日报 <a href="./{today}.html">{today}</a>...</p>
-</body>
-</html>"""
+    # 扫描 docs/ 下所有历史日报，构建存档列表
+    reports = []
+    if os.path.isdir("docs"):
+        for fname in os.listdir("docs"):
+            if fname.endswith(".html") and fname != "index.html":
+                date_part = fname[:-5]
+                url = f"./{fname}"
+                reports.append((date_part, url))
+    # 按日期倒序
+    reports.sort(reverse=True)
+
+    # 更新首页 index.html（带历史存档）
+    index = generate_index_html(reports, today, today_url)
     with open("docs/index.html", "w", encoding="utf-8") as f:
         f.write(index)
+    log.info(f"首页已更新，共 {len(reports)} 份历史存档")
 
 
 
