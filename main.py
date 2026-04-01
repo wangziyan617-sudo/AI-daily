@@ -457,7 +457,7 @@ def push_to_feishu(categorized: dict, today: str, page_url: str):
 
 GITHUB_PAGES_URL = "https://wangziyan617-sudo.github.io/AI-daily"
 
-def generate_html(categorized: dict, today: str) -> str:
+def generate_html(categorized: dict, today: str, page_url: str = "") -> str:
     """生成一天的日报 HTML 页面"""
     CATEGORY_ICONS = {
         "AI底层技术": "🔬",
