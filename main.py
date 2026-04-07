@@ -311,7 +311,7 @@ def summarize_with_llm(items: list[dict]) -> str:
    - 🔬 AI底层技术：模型进展、论文成果、架构创新、训练方法突破等
    - 🛠 效率工具：效率提升工具、工作流技巧、实操教程、Prompt 方法等
    - 💰 AI商业变现：具体公司/创业者通过 AI 赚到真金白银的案例，包含收入数据、用户增长、商业模式等
-3. 对每条内容用 2 句话总结：这件事是什么 + 对业务分析师有什么参考价值
+3. 对每条内容用 2 句话总结：这件事是什么 + 对业务分析师有什么参考价值（summary 字段中禁止使用双引号，用「」代替）
 4. 严格按以下 JSON 格式输出，不要输出其他任何内容：
 
 {{
@@ -347,14 +347,22 @@ def summarize_with_llm(items: list[dict]) -> str:
         try:
             return json.loads(json_str.group())
         except json.JSONDecodeError as je:
-            # 尝试修复：把未转义的引号替换掉
             try:
                 fixed = _fix_json(json_str.group())
                 return json.loads(fixed)
             except Exception:
                 log.error(f"JSON 解析失败: {je}")
                 log.error(f"问题位置附近: {raw[max(0,je.pos-50):je.pos+100]}")
-                raise
+                # 最后兜底：把 string value 内的裸双引号替换为中文引号
+                try:
+                    sanitized = re.sub(
+                        r'(?<=[:\s,\[{])"((?:[^"\\]|\\.)*?)"',
+                        lambda m: '"' + m.group(1).replace('"', '「').replace('"', '」') + '"',
+                        json_str.group()
+                    )
+                    return json.loads(sanitized)
+                except Exception:
+                    raise
     except Exception as e:
         log.error(f"LLM 调用失败: {e}")
         return None
