@@ -319,7 +319,6 @@ def summarize_with_llm(items: list[dict]) -> str:
     {{"title": "文章标题", "summary": "2句话摘要", "url": "链接", "priority": true或false}},
     ...
   ],
-  "AI底层技术": [...],
   "AI工具应用": [...],
   "AI商业变现": [...]
 }}
