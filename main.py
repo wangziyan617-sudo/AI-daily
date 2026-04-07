@@ -339,49 +339,82 @@ def summarize_with_llm(items: list[dict]) -> str:
         # 去掉 markdown 代码块包裹
         raw = re.sub(r'^```json\s*', '', raw, flags=re.MULTILINE).strip()
         raw = re.sub(r'^```\s*$', '', raw, flags=re.MULTILINE).strip()
-        # 提取 JSON
-        json_str = re.search(r'\{[\s\S]+\}', raw)
-        if not json_str:
-            log.error(f"LLM 返回非 JSON 内容: {raw[:200]}")
-            raise ValueError("LLM 未返回有效 JSON")
-        try:
-            return json.loads(json_str.group())
-        except json.JSONDecodeError as je:
+
+        def _try_parse(text: str):
+            """尝试解析 JSON，失败时自动修复后再试"""
             try:
-                fixed = _fix_json(json_str.group())
-                return json.loads(fixed)
-            except Exception:
-                log.error(f"JSON 解析失败: {je}")
-                log.error(f"问题位置附近: {raw[max(0,je.pos-50):je.pos+100]}")
-                # 最后兜底：把 string value 内的裸双引号替换为中文引号
-                try:
-                    sanitized = re.sub(
-                        r'(?<=[:\s,\[{])"((?:[^"\\]|\\.)*?)"',
-                        lambda m: '"' + m.group(1).replace('"', '「').replace('"', '」') + '"',
-                        json_str.group()
-                    )
-                    return json.loads(sanitized)
-                except Exception:
-                    raise
+                return json.loads(text)
+            except json.JSONDecodeError:
+                pass
+            # 兜底：把 string value 内未转义的 " 替换成全角「
+            # 策略：逐字符扫描，遇到在 string value 内的 " 就转义
+            result = []
+            i = 0
+            in_string = False
+            escape_next = False
+            while i < len(text):
+                c = text[i]
+                if escape_next:
+                    result.append(c)
+                    escape_next = False
+                    i += 1
+                    continue
+                if c == '\\' and in_string:
+                    result.append(c)
+                    escape_next = True
+                    i += 1
+                    continue
+                if c == '"':
+                    if not in_string:
+                        in_string = True
+                        result.append(c)
+                    else:
+                        # 结束引号，检查后面是否合理（如 , } ] : 空格 换行）
+                        nxt = text[i+1] if i+1 < len(text) else ''
+                        if nxt in (',', '}', ']', ':', ' ', '\n', '\r', '\t'):
+                            in_string = False
+                            result.append(c)
+                        else:
+                            # string 内的引号，转义它
+                            result.append('\\"')
+                            i += 1
+                            continue
+                else:
+                    result.append(c)
+                i += 1
+            try:
+                return json.loads(''.join(result))
+            except json.JSONDecodeError:
+                return None
+
+        result = _try_parse(raw)
+        if result is not None:
+            return result
+
+        # 完全解析失败，取每个分类下的第一条，手动提取 title/summary/url
+        log.warning("JSON 解析失败，尝试用正则提取内容...")
+        categorized = {}
+        categories = ["AI底层技术", "AI工具应用", "AI商业变现"]
+        for cat in categories:
+            cat_match = re.search(rf'"{re.escape(cat)}"\s*:\s*\[(.*?)\]', raw, re.DOTALL)
+            if not cat_match:
+                categorized[cat] = []
+                continue
+            articles = []
+            items_text = cat_match.group(1)
+            for item_match in re.finditer(r'\{"title"\s*:\s*"([^"]*)"\s*,"summary"\s*:\s*"([^"]*)"\s*,"url"\s*:\s*"([^"]*)"', items_text):
+                articles.append({
+                    "title": item_match.group(1),
+                    "summary": item_match.group(2),
+                    "url": item_match.group(3),
+                    "priority": False
+                })
+            categorized[cat] = articles
+        log.info(f"正则提取结果: { {k: len(v) for k, v in categorized.items()} }")
+        return categorized if any(categorized.values()) else None
     except Exception as e:
         log.error(f"LLM 调用失败: {e}")
         return None
-
-
-def _fix_json(text: str) -> str:
-    """尝试修复常见 JSON 格式错误"""
-    # 把 value 里未转义的 " 替换成转义字符
-    # 思路：把不在 JSON 语法位置的双引号转义
-    lines = text.split('\n')
-    fixed_lines = []
-    for line in lines:
-        # 去掉行尾的逗号（如果后面是 }] 的话）
-        stripped = line.rstrip()
-        fixed_lines.append(stripped)
-    result = '\n'.join(fixed_lines)
-    # 简单替换：把 "url": " 后面的未转义双引号修复
-    result = re.sub(r'(["\s])""', r'\1\\"', result)
-    return result
 
 
 def _format_raw(items: list[dict]) -> str:
