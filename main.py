@@ -283,9 +283,9 @@ def summarize_with_llm(items: list[dict]) -> str:
     )
 
     # 构建输入文本，高权重内容标注 [重点]
-    # 重点公众号取 6 条，其他取 12 条，平衡信息量和 API 处理时间
-    priority_items = [it for it in items if it.get("priority")][:6]
-    other_items = [it for it in items if not it.get("priority")][:12]
+    # 重点公众号取 4 条，其他取 6 条，控制在 API 处理能力内
+    priority_items = [it for it in items if it.get("priority")][:4]
+    other_items = [it for it in items if not it.get("priority")][:6]
     filtered = priority_items + other_items
 
     content_text = ""
@@ -330,7 +330,7 @@ def summarize_with_llm(items: list[dict]) -> str:
         log.info("调用 MiniMax M2.7 生成摘要...")
         response = client.messages.create(
             model="MiniMax-M2.7",
-            max_tokens=2500,
+            max_tokens=6000,
             messages=[{"role": "user", "content": prompt}],
         )
         # M2.7 是思考模型，找第一个 TextBlock
