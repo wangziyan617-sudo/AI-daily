@@ -504,27 +504,49 @@ def generate_html(categorized: dict, today: str, page_url: str = "") -> str:
         "AI工具应用": "🛠",
         "AI商业变现": "💰",
     }
+    CATEGORY_COLORS = {
+        "AI底层技术": "#8b5cf6",
+        "AI工具应用": "#3b82f6",
+        "AI商业变现": "#f59e0b",
+    }
 
-    sections_html = ""
+    # 扁平编号列表
+    items_html = ""
+    idx = 1
+    source_stats = {}
+    total = 0
+
     for category, articles in categorized.items():
         if not articles:
             continue
         icon = CATEGORY_ICONS.get(category, "📌")
-        cards_html = ""
+        color = CATEGORY_COLORS.get(category, "#6b7280")
+
         for a in articles:
-            star = "⭐" if a.get("priority") else ""
-            cards_html += f"""
-            <div class="card">
-                <div class="card-title">
-                    {star} <a href="{a['url']}" target="_blank">{a['title']}</a>
-                </div>
-                <div class="card-summary">{a.get('summary', '')}</div>
-            </div>"""
-        sections_html += f"""
-        <section class="category">
-            <h2>{icon} {category}</h2>
-            {cards_html}
-        </section>"""
+            total += 1
+            source = a.get("source", "公众号")
+            # 统计来源
+            src_key = source.split("/")[0] if "/" in source else source
+            source_stats[src_key] = source_stats.get(src_key, 0) + 1
+
+            star = " ⭐" if a.get("priority") else ""
+            title = a.get("title", "")
+            summary = a.get("summary", "")
+            url = a.get("url", "#")
+
+            items_html += f"""
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">{idx}.</span>
+                <a class="item-title" href="{url}" target="_blank">{title}{star}</a>
+                <span class="item-source" style="background:{color}22;color:{color};border:1px solid {color}44">{icon} {category}</span>
+            </div>
+            <div class="item-analysis">💡 {summary}</div>
+        </div>"""
+            idx += 1
+
+    # 来源分布文字
+    source_dist = " · ".join(f"{k} {v}" for k, v in sorted(source_stats.items(), key=lambda x: -x[1]))
 
     return f"""<!DOCTYPE html>
 <html lang="zh">
@@ -533,26 +555,118 @@ def generate_html(categorized: dict, today: str, page_url: str = "") -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI 日报 · {today}</title>
 <style>
-  body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-         max-width: 860px; margin: 0 auto; padding: 24px; background: #f5f5f7; color: #1d1d1f; }}
-  h1 {{ font-size: 28px; font-weight: 700; margin-bottom: 4px; }}
-  .date {{ color: #6e6e73; font-size: 14px; margin-bottom: 32px; }}
-  h2 {{ font-size: 20px; font-weight: 600; margin: 32px 0 16px;
-        padding-bottom: 8px; border-bottom: 2px solid #e5e5ea; }}
-  .card {{ background: #fff; border-radius: 12px; padding: 18px 20px;
-           margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }}
-  .card-title {{ font-size: 15px; font-weight: 600; margin-bottom: 8px; }}
-  .card-title a {{ color: #1d1d1f; text-decoration: none; }}
-  .card-title a:hover {{ color: #0071e3; }}
-  .card-summary {{ font-size: 14px; color: #3a3a3c; line-height: 1.6; }}
-  footer {{ text-align: center; color: #6e6e73; font-size: 12px; margin-top: 48px; }}
+  * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+  body {{
+    font-family: "SF Pro Display", "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+  }}
+  .container {{
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }}
+  header {{
+    margin-bottom: 40px;
+  }}
+  header h1 {{
+    font-size: 28px;
+    font-weight: 700;
+    color: #f0f6fc;
+    margin-bottom: 6px;
+  }}
+  header .meta {{
+    font-size: 13px;
+    color: #8b949e;
+  }}
+  .divider {{
+    height: 1px;
+    background: linear-gradient(to right, #30363d, transparent);
+    margin: 28px 0;
+  }}
+  .item {{
+    padding: 18px 0;
+    border-bottom: 1px solid #21262d;
+  }}
+  .item:last-of-type {{ border-bottom: none; }}
+  .item-header {{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }}
+  .item-num {{
+    font-size: 15px;
+    font-weight: 700;
+    color: #8b949e;
+    min-width: 28px;
+  }}
+  .item-title {{
+    font-size: 15px;
+    font-weight: 600;
+    color: #58a6ff;
+    text-decoration: none;
+    flex: 1;
+    line-height: 1.4;
+  }}
+  .item-title:hover {{ color: #79c0ff; text-decoration: underline; }}
+  .item-source {{
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }}
+  .item-analysis {{
+    font-size: 13.5px;
+    color: #8b949e;
+    line-height: 1.7;
+    padding-left: 38px;
+  }}
+  .stats {{
+    margin-top: 40px;
+    padding: 20px 24px;
+    background: #161b22;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    font-size: 13px;
+    color: #8b949e;
+  }}
+  .stats strong {{ color: #e6edf3; }}
+  footer {{
+    margin-top: 40px;
+    text-align: center;
+    font-size: 12px;
+    color: #484f58;
+  }}
+  footer a {{ color: #484f58; text-decoration: none; }}
+  footer a:hover {{ color: #8b949e; }}
 </style>
 </head>
 <body>
-<h1>🤖 AI 日报</h1>
-<div class="date">{today} · 由 MiniMax M2.7 生成</div>
-{sections_html}
-<footer>数据来源：量子位 · 机器之心 · 36氪 · arXiv · 搜狗微信</footer>
+<div class="container">
+  <header>
+    <h1>🤖 AI 日报</h1>
+    <div class="meta">{today} · 由 MiniMax M2.7 精选 · 工作日 10:00 自动更新</div>
+  </header>
+
+  <div class="divider"></div>
+
+{items_html}
+
+  <div class="stats">
+    📊 今日精选 <strong>{total} 条</strong>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    来源分布: {source_dist}
+  </div>
+
+  <footer>
+    数据来源：量子位 · 机器之心 · 36氪 · 通往AGI之路 · 数字生命卡兹克 · arXiv · 搜狗微信
+  </footer>
+</div>
 </body>
 </html>"""
 
