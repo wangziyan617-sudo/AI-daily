@@ -5,33 +5,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI 日报 · 历史存档</title>
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-         max-width: 680px; margin: 0 auto; padding: 40px 24px; background: #f5f5f7; color: #1d1d1f; }
-  h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
-  .subtitle { color: #6e6e73; font-size: 14px; margin-bottom: 32px; }
-  .today-card { background: #0071e3; border-radius: 16px; padding: 24px; margin-bottom: 32px; }
-  .today-card a { color: #fff; font-size: 18px; font-weight: 600; text-decoration: none; display: block; }
-  .today-card .today-label { color: rgba(255,255,255,0.7); font-size: 13px; margin-bottom: 8px; }
-  h2 { font-size: 13px; font-weight: 600; margin: 32px 0 16px; color: #6e6e73; text-transform: uppercase; letter-spacing: 1px; }
-  ul { list-style: none; padding: 0; }
-  li a { display: block; background: #fff; padding: 14px 20px; border-radius: 10px;
-           margin-bottom: 8px; text-decoration: none; color: #1d1d1f;
-           box-shadow: 0 1px 4px rgba(0,0,0,.06); font-size: 15px; }
-  li a:hover { background: #f0f0f5; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "SF Pro Display", "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 64px 24px 80px;
+  }
+  h1 { font-size: 36px; font-weight: 700; margin-bottom: 10px; color: #f0f6fc; }
+  .subtitle { font-size: 13px; color: #8b949e; margin-bottom: 40px; }
+  .today-card {
+    background: linear-gradient(135deg, #1f6feb22, #8b5cf622);
+    border: 1px solid #1f6feb44;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 40px;
+  }
+  .today-card .today-label { font-size: 12px; color: #8b949e; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+  .today-card a { color: #58a6ff; font-size: 20px; font-weight: 700; text-decoration: none; display: block; }
+  .today-card a:hover { color: #79c0ff; text-decoration: underline; }
+  h2 { font-size: 11px; font-weight: 600; color: #484f58; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+  ul { list-style: none; }
+  li a { display: flex; justify-content: space-between; align-items: center;
+           padding: 14px 16px; background: #161b22; border-radius: 10px;
+           margin-bottom: 6px; text-decoration: none; color: #e6edf3; font-size: 14px;
+           border: 1px solid #21262d; transition: background 0.15s; }
+  li a:hover { background: #1f2937; border-color: #30363d; }
+  footer { margin-top: 60px; text-align: center; font-size: 12px; color: #484f58; }
 </style>
 </head>
 <body>
-<h1>🤖 AI 日报</h1>
-<div class="subtitle">工作日 10:00 自动更新 · 由 MiniMax M2.7 生成摘要</div>
+<div class="container">
+  <h1>🤖 AI 日报</h1>
+  <div class="subtitle">工作日 10:00 自动更新 · 由 MiniMax M2.7 生成摘要</div>
 
-<div class="today-card">
-  <div class="today-label">今日 · 2026-04-09</div>
-  <a href="./2026-04-09.html">查看今日 AI 日报 →</a>
-</div>
+  <div class="today-card">
+    <div class="today-label">今日 · 2026-04-09</div>
+    <a href="./2026-04-09.html">查看今日 AI 日报 →</a>
+  </div>
 
-<h2>历史日报</h2>
-<ul>
+  <h2>历史日报</h2>
+  <ul>
 <li><a href="./2026-04-09.html">2026-04-09 （今日）</a></li><li><a href="./2026-04-08.html">2026-04-08 </a></li><li><a href="./2026-04-07.html">2026-04-07 </a></li><li><a href="./2026-03-31.html">2026-03-31 </a></li>
-</ul>
+  </ul>
+
+  <footer>数据来源：量子位 · 机器之心 · 36氪 · 通往AGI之路 · 数字生命卡兹克 · arXiv</footer>
+</div>
 </body>
 </html>
