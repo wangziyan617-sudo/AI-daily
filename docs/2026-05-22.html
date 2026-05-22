@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026-05-22</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "SF Pro Display", "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  header {
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #f0f6fc;
+    margin-bottom: 6px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #8b949e;
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, #30363d, transparent);
+    margin: 28px 0;
+  }
+  .item {
+    padding: 18px 0;
+    border-bottom: 1px solid #21262d;
+  }
+  .item:last-of-type { border-bottom: none; }
+  .item-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .item-num {
+    font-size: 15px;
+    font-weight: 700;
+    color: #8b949e;
+    min-width: 28px;
+  }
+  .item-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #58a6ff;
+    text-decoration: none;
+    flex: 1;
+    line-height: 1.4;
+  }
+  .item-title:hover { color: #79c0ff; text-decoration: underline; }
+  .item-source {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .item-analysis {
+    font-size: 13.5px;
+    color: #8b949e;
+    line-height: 1.7;
+    padding-left: 38px;
+  }
+  .stats {
+    margin-top: 40px;
+    padding: 20px 24px;
+    background: #161b22;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    font-size: 13px;
+    color: #8b949e;
+  }
+  .stats strong { color: #e6edf3; }
+  footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 12px;
+    color: #484f58;
+  }
+  footer a { color: #484f58; text-decoration: none; }
+  footer a:hover { color: #8b949e; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🤖 AI 日报</h1>
+    <div class="meta">2026-05-22 · 由 MiniMax M2.7 精选 · 工作日 10:00 自动更新</div>
+  </header>
+
+  <div class="divider"></div>
+
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">1.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2605.22794v1" target="_blank">MOSS: Self-Evolution through Source-Level Rewriting in Autonomous Agent Systems ⭐</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 该论文提出自主Agent系统能够通过源代码重写在部署后持续自我进化，无需等待人工更新即可从用户交互中学习并修复重复失败的问题。业务分析师可关注此方向，探索如何构建能自动优化响应质量、适应业务变化的智能分析工具。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">2.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2605.22731v1" target="_blank">Post-Training is About States, Not Tokens: A State Distribution View of SFT, RL, and On-Policy Distillation ⭐</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 研究提出后训练方法（监督微调、强化学习、蒸馏）的本质是状态分布优化而非token级别的损失函数，为理解模型行为调整提供新视角。业务分析师可借此理解不同训练方法对AI输出的影响机制，更好地评估和选择适合业务的模型方案。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">3.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2605.22733v1" target="_blank">HarnessAPI: A Skill-First Framework for Unified Streaming APIs and MCP Tools ⭐</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 该框架实现了Python函数同时作为HTTP端点和MCP工具的统一部署，简化了AI Agent运行时的工具注册流程。对业务分析师而言，这意味着未来可以更便捷地将业务逻辑封装为AI可调用的工具，提升工作流自动化能力。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">4.</span>
+                <a class="item-title" href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgS5YKKUMi67pLV2RVgKKfulsrIiwhEAdx0lqXa8Fplpd99GM98vcgQUTMFzeZPL2s5S4xkkjWcVhmi1h3LhCKVFB-cSft88yJMNfQapOINlEP07MLUDxBBVb9f_A_922mBRWHmoP5Yq_HTpMSudlbQX2ZQaa_R-M-yMtxJf1spzSL5o1-wr5yGS0rFDRmrohY4gftNAiwq6fnOdj0Oj_vfKZj32-j2KiwUw..&type=2&query=%E9%87%8F%E5%AD%90%E4%BD%8D AI&token=D2DED18D99FF4D309B9AC9FD521A7E7B9CA4553A6A0FF202" target="_blank">量子位2026 AI榜单出炉，紫东太初斩获双项大奖 ⭐</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 紫东太初在量子位年度榜单中凭借AI融入业务流程和激活生产力方面的表现获得双项殊荣，反映了国内AI企业在多模态融合技术上的突破。业务分析师可关注这些领先企业的技术路线，借鉴其在业务场景落地方面的实践经验。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">5.</span>
+                <a class="item-title" href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgS5YKKUMi67pLV2RVgKKfulsrIiwhEAdx0lqXa8Fplpd9QqfzANaTCuYN986SAz_73VKLCpcRJ-HXLSrhLVIJKnMgcZwn2mE7_NAZNv-JHy_tVbRfZ3iM-iSqf_M6jghCeCzmucFqSVUTgZ-iwXHpYVnuq_ScBU4ltiMLm3dUstfq0jmmAcwjaytzO2TGUHz6TMtrEdpzgJyk9iUDfAmQsf55LU3lqtPw9g..&type=2&query=%E9%87%8F%E5%AD%90%E4%BD%8D AI&token=D2DED18D99FF4D309B9AC9FD521A7E7B9CA4553A6A0FF202" target="_blank">520当天400万AI人，都在量子位听这近20场演讲&对谈|第四届中国AIGC产业峰会</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 量子位主办的第四届中国AIGC产业峰会汇聚近20场演讲对谈，聚焦Agent作为行业突围方向，展示了2026年AI应用的最新趋势。业务分析师可通过峰会内容了解行业前沿动态，把握AI应用的发展方向和潜在机会。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">6.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2605.22771v1" target="_blank">Reducing Political Manipulation with Consistency Training</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 研究指出大语言模型在敏感语境中存在系统性政治偏见，并提出一致性训练方法减少政治操控风险。对业务分析师而言，理解模型偏见机制有助于在分析涉及政治敏感话题的内容时保持审慎态度。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">7.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2605.22732v1" target="_blank">Beyond Acoustic Emotion Recognition: Multimodal Pathos Analysis in Political Speech Using LLM-Based and Acoustic Emotion Models</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 研究探索了声学情感识别模型在政治演讲中作为Pathos（情感诉求）代理的可行性，融合多模态大语言模型进行情感分析。业务分析师在处理用户反馈、市场调研等文本时，可借鉴多模态分析思路提升洞察深度。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">8.</span>
+                <a class="item-title" href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgS5YKKUMi67pLV2RVgKKfulsrIiwhEAdx0lqXa8Fplpd9KuYmAnKbjHEH6CAYw-rYb6Z3tZvSfjsEf0QbJ1zlV3IJxAIzjpIGtnBkpEX0cQXL6vcUetpSiVOI2olOD7xZTxXDqfT7bMEW6RobtCoeWRaOb5IUMyoUVBhy2iOkr2soeIcpjWZZVliXkrxnIkPUGQZn0ZoqTY9rMjggrEmshqs89kyxDwoXvg..&type=2&query=%E9%87%8F%E5%AD%90%E4%BD%8D AI&token=D2DED18D99FF4D309B9AC9FD521A7E7B9CA4553A6A0FF202" target="_blank">AI效率工具使用技巧:10个让你工作效率翻倍的神器 ⭐</a>
+                <span class="item-source" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f644">🛠 AI工具应用</span>
+            </div>
+            <div class="item-analysis">💡 文章整理了10个最实用的AI效率工具使用技巧，涵盖文本生成、信息查询、创意写作等多个场景。业务分析师可直接参考这些技巧，将其应用于日常数据分析、报告撰写等工作，提升至少一倍的工作效率。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">9.</span>
+                <a class="item-title" href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgS5YKKUMi67pL0CLJMru59sUrIiwhEAdx0lqXa8Fplpd97Y7O6jguoTaptL8PW3YiMIEOIBDeqBBdNUKs18YDdlAI5Y4bKE9neDthrpn3_gzkBOKx14UnG1g2kEekvZiAjK39KvwBefQ5MJ-c9Ib1sqD9BCYjADlFHJeIb45JeHugMDWvpgedyNhdIwpWG1dF--R7ThcJag6OuR5SmK-lGlvvzHZXxeLdyg..&type=2&query=AI%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7&token=D2E3AD83A5C5700BA6A0F5C77F7C096EA702928D6A0FF2C0" target="_blank">上线AI效率工具，跃问能否「实至名归」?</a>
+                <span class="item-source" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f644">🛠 AI工具应用</span>
+            </div>
+            <div class="item-analysis">💡 跃问是一款具备文本理解生成、图像分析、信息查询、语言学习、创意写作等多功能的AI效率工具。业务分析师可关注此类综合性AI工具的实际效果，评估其在业务分析场景中的适用性。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">10.</span>
+                <a class="item-title" href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgS5YKKUMi67pLV2RVgKKfulsrIiwhEAdx0lqXa8Fplpd9XTOI-Q167d4VwYd4qwgomcW1ArPqaVyo1BRTQi7Q5l3Ll60by-cwdk_Bgbw1_b2rvr9Jul3DvscOIYWuIfplt8WLOcqmt4Xu1BbXW5k7UA9E898bgcVfbLxhAaa6bZ5ntJrhAzAe4ecLdeV8R5XlsNFZ7ZyXuQfeSgsi8bd4dwqFW6cwuUnkdA..&type=2&query=%E9%87%8F%E5%AD%90%E4%BD%8D AI&token=D2DED18D99FF4D309B9AC9FD521A7E7B9CA4553A6A0FF202" target="_blank">量子位2026AI榜单出炉 昆仑万维荣获两大重磅奖项 ⭐</a>
+                <span class="item-source" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b44">💰 AI商业变现</span>
+            </div>
+            <div class="item-analysis">💡 昆仑万维在量子位年度评选中凭借生成式AI企业与产品的实际表现、用户反馈与行业影响力获得两大重磅奖项。业务分析师可通过分析获奖企业的产品策略和商业模式，借鉴AI商业化的成功经验。</div>
+        </div>
+
+  <div class="stats">
+    📊 今日精选 <strong>10 条</strong>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    来源分布: 公众号 10
+  </div>
+
+  <footer>
+    数据来源：量子位 · 机器之心 · 36氪 · 通往AGI之路 · 数字生命卡兹克 · arXiv · 搜狗微信
+  </footer>
+</div>
+</body>
+</html>
