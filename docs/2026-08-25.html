@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026-08-25</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "SF Pro Display", "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  header {
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #f0f6fc;
+    margin-bottom: 6px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #8b949e;
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, #30363d, transparent);
+    margin: 28px 0;
+  }
+  .item {
+    padding: 18px 0;
+    border-bottom: 1px solid #21262d;
+  }
+  .item:last-of-type { border-bottom: none; }
+  .item-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .item-num {
+    font-size: 15px;
+    font-weight: 700;
+    color: #8b949e;
+    min-width: 28px;
+  }
+  .item-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #58a6ff;
+    text-decoration: none;
+    flex: 1;
+    line-height: 1.4;
+  }
+  .item-title:hover { color: #79c0ff; text-decoration: underline; }
+  .item-source {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .item-analysis {
+    font-size: 13.5px;
+    color: #8b949e;
+    line-height: 1.7;
+    padding-left: 38px;
+  }
+  .stats {
+    margin-top: 40px;
+    padding: 20px 24px;
+    background: #161b22;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    font-size: 13px;
+    color: #8b949e;
+  }
+  .stats strong { color: #e6edf3; }
+  footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 12px;
+    color: #484f58;
+  }
+  footer a { color: #484f58; text-decoration: none; }
+  footer a:hover { color: #8b949e; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🤖 AI 日报</h1>
+    <div class="meta">2026-08-25 · 由 MiniMax M2.7 精选 · 工作日 10:00 自动更新</div>
+  </header>
+
+  <div class="divider"></div>
+
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">1.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2608.22830v1" target="_blank">Beyond the Harness: End-to-End Optimization of Context Artifacts for Enterprise Text-to-SQL ⭐</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 论文提出针对企业Text-to-SQL场景的端到端上下文优化方法，解决大型语言模型难以处理庞大业务表结构的难题。该研究对业务分析师意义重大，暗示未来可能实现更智能的数据库自然语言查询，降低SQL编写门槛。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">2.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2608.23566v1" target="_blank">How to Train a Critic Stably and Efficiently</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 研究提出稳定高效训练强化学习Critic的方法，改进了GRPO等基于群体的训练范式，无需为每个提示采样多个响应。该进展有助于提升大语言模型推理质量，业务分析师可关注其在AI辅助决策场景的潜在应用。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">3.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2608.23565v1" target="_blank">ReWorld: An Interactive World Model with Long-Horizon Memory</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 论文提出具备长期记忆能力的交互式世界模型，能跟随用户行动并实时流式输出。该技术突破对需要复杂上下文理解的业务分析场景有重要参考价值，如智能客服和决策支持系统。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">4.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2608.23564v1" target="_blank">SWE Refactor Bench: Can Coding Agents Complete a Long-Horizon, Whole-Repository Stack Migration?</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 论文提出代码智能体重构基准测试，评估其在完整代码库迁移任务中的能力，揭示当前智能体在长期复杂任务中的局限性。该研究对业务分析师评估AI代码生成工具的实际可用性具有指导意义。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">5.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2608.23563v1" target="_blank">EG-ARSA: An Expert-Grounded Open Model for Visual Road Safety Auditing in Low-Resource Settings</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 论文提出针对资源匮乏地区的视觉道路安全审计专家基础开源模型，解决专业审计人员短缺问题。该应用案例展示AI在特定行业垂直领域的落地潜力，业务分析师可借鉴此思路发掘类似场景需求。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">6.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2608.23562v1" target="_blank">Physics-Constrained Deep Learning Model for Contactless Blood Pressure Monitoring</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 研究结合物理约束的深度学习方法，实现从体地震图信号无接触监测血压。该跨学科方法将领域知识融入AI模型训练，为业务分析师提供AI与传统行业结合的创新思路参考。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">7.</span>
+                <a class="item-title" href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSxOQJml35U9-DGSZJj8XA98umUQGLOj9aVqXa8Fplpd95zVx5ZCJJ_P2tPG7-vkfZsZROxHNLoJzh35iaDSGwT-EV0u-dRrdD7ar2nrBrp3PVoGA02z8FTUpfTge05PgK0UFOYf_WvX4S7W8HigrZERKVjSAqItpJJJplFpSR5R9BfxL5T_mI84NqA5VKBp_9nBrkxnaOl7VVULcOEY8RGnwdVqCwyPdzA..&type=2&query=%E9%87%8F%E5%AD%90%E4%BD%8D%20AI&token=8B21D9087509E970404619967CEE13E840D49F276A8D0428" target="_blank">量子位智库AI内参|2月27日 - Meta与谷歌签署数十亿美元AI芯片租赁协议 ⭐</a>
+                <span class="item-source" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f644">🛠 AI工具应用</span>
+            </div>
+            <div class="item-analysis">💡 据量子位智库报道，Meta与谷歌签署价值数十亿美元的AI芯片租赁协议，反映头部科技公司对AI算力的巨额投入。该信息提醒业务分析师关注AI基础设施成本结构变化对企业AI应用决策的影响。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">8.</span>
+                <a class="item-title" href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSxOQJml35U9-DGSZJj8XA98umUQGLOj9aVqXa8Fplpd9JmMtxqPgdnoQ3KMiwpc7j2fYkJzzvCfAATJIfm2zmBIAfICdAVENHySTD0-FfSeMybQSGKONRRgde735niaWcKw7SuUxIUe2axyOU6Nxxs_JkwqSp42_TV08cusri3SbjkuM53NcAveWW4WFiXW7i9pOIP-h3SuQoKJN8Jb4Co8NGbbB75bUeA..&type=2&query=%E9%87%8F%E5%AD%90%E4%BD%8D%20AI&token=8B21D9087509E970404619967CEE13E840D49F276A8D0428" target="_blank">量子位智库AI内参|4月2日 - Cognichip完成6000万美元A轮融资 ⭐</a>
+                <span class="item-source" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b44">💰 AI商业变现</span>
+            </div>
+            <div class="item-analysis">💡 据量子位智库AI内参报道，AI芯片设计公司Cognichip完成6000万美元A轮融资，显示资本市场对AI芯片领域的持续热情。业务分析师可据此评估AI基础设施赛道的投资热度及其对下游应用的影响。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">9.</span>
+                <a class="item-title" href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSxOQJml35U9-DGSZJj8XA98umUQGLOj9aVqXa8Fplpd9g_l-oZjAwJCB08r1RdDYurCYpg66xPBWqrudOODoQiYxv4L8zabDWZEbkulzVOy_nUzEoj-Kj_ib9chjCHIglshGGENdNnnOLtyNPqth3X9d0YHo8NY84ikb2gaGEogdPAP2pYwezPp0ntJ-q9g4vaf9sWUNLDI_fsekWLJMua3yPfCoem7FzA..&type=2&query=%E9%87%8F%E5%AD%90%E4%BD%8D%20AI&token=8B21D9087509E970404619967CEE13E840D49F276A8D0428" target="_blank">量子位联合拉勾推出AI人才招聘专场</a>
+                <span class="item-source" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b44">💰 AI商业变现</span>
+            </div>
+            <div class="item-analysis">💡 量子位与拉勾合作推出AI人才招聘专场，服务AI企业招募优质人才，反映AI人才市场需求旺盛。业务分析师可关注AI岗位需求变化，为团队人才储备和技能规划提供参考依据。</div>
+        </div>
+
+  <div class="stats">
+    📊 今日精选 <strong>9 条</strong>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    来源分布: 公众号 9
+  </div>
+
+  <footer>
+    数据来源：量子位 · 机器之心 · 36氪 · 通往AGI之路 · 数字生命卡兹克 · arXiv · 搜狗微信
+  </footer>
+</div>
+</body>
+</html>
