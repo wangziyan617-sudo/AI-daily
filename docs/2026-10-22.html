@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026-10-22</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "SF Pro Display", "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  header {
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #f0f6fc;
+    margin-bottom: 6px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #8b949e;
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, #30363d, transparent);
+    margin: 28px 0;
+  }
+  .item {
+    padding: 18px 0;
+    border-bottom: 1px solid #21262d;
+  }
+  .item:last-of-type { border-bottom: none; }
+  .item-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .item-num {
+    font-size: 15px;
+    font-weight: 700;
+    color: #8b949e;
+    min-width: 28px;
+  }
+  .item-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #58a6ff;
+    text-decoration: none;
+    flex: 1;
+    line-height: 1.4;
+  }
+  .item-title:hover { color: #79c0ff; text-decoration: underline; }
+  .item-source {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .item-analysis {
+    font-size: 13.5px;
+    color: #8b949e;
+    line-height: 1.7;
+    padding-left: 38px;
+  }
+  .stats {
+    margin-top: 40px;
+    padding: 20px 24px;
+    background: #161b22;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    font-size: 13px;
+    color: #8b949e;
+  }
+  .stats strong { color: #e6edf3; }
+  footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 12px;
+    color: #484f58;
+  }
+  footer a { color: #484f58; text-decoration: none; }
+  footer a:hover { color: #8b949e; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🤖 AI 日报</h1>
+    <div class="meta">2026-10-22 · 由 MiniMax M2.7 精选 · 工作日 10:00 自动更新</div>
+  </header>
+
+  <div class="divider"></div>
+
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">1.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2610.30125v1" target="_blank">PhysiCalWorld: In-Context Physics Calibration for World Models</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 PhysiCalWorld 研究如何通过上下文中的视觉与历史观察，校准世界模型对场景物理属性的理解。其价值在于为业务分析师评估 AI 是否真正掌握环境规律提供了新的技术路线，可用于机器人、自动驾驶和复杂业务模拟场景。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">2.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2610.29331v1" target="_blank">From Prompts to Posteriors: Can LLM Agents Perform Bayesian Inference in Context?</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 该论文研究 LLM Agent 能否在上下文中完成贝叶斯推断，并从证据逐步更新概率判断。它提示业务分析师可将模型输出从直接生成结论升级为可解释的概率更新过程，从而提升研究结论的可信度与可复核性。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">3.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2610.30113v1" target="_blank">Quant-Arena: Benchmarking LLM Agents for Quantitative Trading Research</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 Quant-Arena 构建了覆盖假设提出、信号实现、历史数据验证和策略取舍的量化研究评测环境。它可为业务分析师筛选适合金融研究场景的 Agent 提供量化依据，并帮助建立从研究思路到可执行策略的评估框架。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">4.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2610.30042v1" target="_blank">HGM-Dual: Lineage-Aware Guided Agent Harness Optimization for Long-Horizon Planning</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 HGM-Dual 通过利用任务执行轨迹与路径关系，协同优化 Agent 的提示词、工具和工作流，以改善长周期任务规划能力。对业务分析师而言，这提供了在不更换底层模型的情况下，通过优化 Agent Harness 提升复杂分析任务稳定性的方法。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">5.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2610.30047v1" target="_blank">SWE-DIVE: Multi-Turn Coding Agent Evaluation with Dynamic User Simulation</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 SWE-DIVE 使用动态用户模拟构造多轮 Coding Agent 评测，以检验 Agent 在需求变化和反馈修正中的持续开发能力。该成果可被业务分析师用于设计更贴近实际协作场景的 AI 工具选型与验收标准。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">6.</span>
+                <a class="item-title" href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSwb4Lb5ufyCyH1e6L0fOU4yGYDa2qHcjF1qXa8Fplpd9TF7GpPup4jcIUEOLPLTRp_fkUjidR2otpzNyCQtSWnzAuAw4iZmN2-i46KJ4GuvpwdtkM4-jlyjlaClCkOyk3o6JLspinZX1rRms1Ba_3wQkcnGb-9DaqMmXB-kzuxGNqiFcOHf8mSzsgbOa_0LxUPOl3RPhHha85AJ5hZAZVWZOJBjQH7pCxQ..&amp;type=2&amp;query=%E9%87%8F%E5%AD%90%E4%BD%8D AI&amp;token=6457C3583D3814786C6D350416156BEC6CD1F98F6AD9B58C" target="_blank">量子位智库报告：AI落地先夯实数据底座 ⭐</a>
+                <span class="item-source" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f644">🛠 AI工具应用</span>
+            </div>
+            <div class="item-analysis">💡 量子位智库指出，企业引入 AI 后只获得聊天能力却未产生经营结果，核心断点之一是数据口径、语义和基础治理不足。业务分析师可据此在评估 AI 项目时优先检查数据可得性、语义一致性与治理成熟度，避免将问题简单归因于模型能力。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">7.</span>
+                <a class="item-title" href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSwb4Lb5ufyCyH1e6L0fOU4yGYDa2qHcjF1qXa8Fplpd9DjIiqr_Uqf0j8teBok0iqB8pqGL7S7legJJeVoer0rG6mRhnU8r14fHxcglONOs5wao4xoJfW0ORFKOHNmD2IumDv5tEpDT-FokXzuoRV6sM9WfGok3ZF9ThvXI49M_w2DNzoAE06zoo8nj4uBlnFU6wQvYc08YUL-hvtyKSyBV535pjGOOjYg..&amp;type=2&amp;query=%E9%87%8F%E5%AD%90%E4%BD%8D AI&amp;token=6457C3583D3814786C6D350416156BEC6CD1F98F6AD9B58C" target="_blank">AI用起来了，经营结果却没变：量子位智库拆出六个断点 ⭐</a>
+                <span class="item-source" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f644">🛠 AI工具应用</span>
+            </div>
+            <div class="item-analysis">💡 量子位智库发布《Agent驱动的企业智能化：单点提效到规模化重塑》，归纳 AI 从单点使用走向规模化经营时的六个断点。业务分析师可将其用作 AI 项目诊断清单，区分使用率、流程渗透率与经营指标之间的传导关系。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">8.</span>
+                <a class="item-title" href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSwb4Lb5ufyCyH1e6L0fOU4yGYDa2qHcjF1qXa8Fplpd9yK5hItq4XE1lFefg-jTKEU8ms0gn8zY4Qgt3HtxurOr8_QLaE9J9ef8TR0qjjZbi3QzXVyY5XsbIFF_tQ7yKluQx06lPZPOnv6C8JWofjwPFEPDyvw1ySqQmZ0nQ6sGn7bxgAF4DISGyu-iRjqFFb3r48v_9yiihatAc_Wc_XwdflztgI7RZ1g..&amp;type=2&amp;query=%E9%87%8F%E5%AD%90%E4%BD%8D AI&amp;token=6457C3583D3814786C6D350416156BEC6CD1F98F6AD9B58C" target="_blank">2026年度AI十大趋势征集启动｜量子位智库 ⭐</a>
+                <span class="item-source" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f644">🛠 AI工具应用</span>
+            </div>
+            <div class="item-analysis">💡 量子位智库启动年度 AI 趋势征集，关注 AI 从「能想」向「能干」演进，以及智能体自主拆解目标和调度工具等方向。该征集可作为业务分析师观察行业议题和建立外部信号雷达的参考来源。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">9.</span>
+                <a class="item-title" href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSwb4Lb5ufyCyH1e6L0fOU4yGYDa2qHcjF1qXa8Fplpd9NCl2xOjz-2olyJ9eAWMAijL0MrTzJK7-ySRqe7HdWV418c4cM0a4FxVkONy3iiPmGVuKWnNxwQc2ggCqMQenUeF0UA4ia7bPgHk0qHaODw-sfQpmAmj_C-KYJ-PWFoaykMVunSYG5PLU1bfLVkOdCwyF222drkc2Dbyg9uD-7ZA6Ebq8fk9diw..&amp;type=2&amp;query=%E9%87%8F%E5%AD%90%E4%BD%8D AI&amp;token=6457C3583D3814786C6D350416156BEC6CD1F98F6AD9B58C" target="_blank">量子位2026人工智能年度榜单，正式启动！ ⭐</a>
+                <span class="item-source" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f644">🛠 AI工具应用</span>
+            </div>
+            <div class="item-analysis">💡 量子位人工智能年度榜单从企业、产品和人物三个维度设置五类奖项，重点识别真正创造 AI 价值的实践者。业务分析师可借此建立优质案例观察池，但榜单本身不等同于收入证据，实际采用前仍需核验商业数据。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">10.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2610.30072v1" target="_blank">Charts as Epistemic Actions for Experience-Driven Agentic Data Analysis</a>
+                <span class="item-source" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f644">🛠 AI工具应用</span>
+            </div>
+            <div class="item-analysis">💡 该研究将图表生成视作数据 Agent 的认知动作，使系统能够通过可视化探索获得经验并持续修正分析判断。业务分析师可借鉴这一交互范式，让 AI 从直接输出结论转向通过多轮图表验证洞察。</div>
+        </div>
+
+  <div class="stats">
+    📊 今日精选 <strong>10 条</strong>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    来源分布: 公众号 10
+  </div>
+
+  <footer>
+    数据来源：量子位 · 机器之心 · 36氪 · 通往AGI之路 · 数字生命卡兹克 · arXiv · 搜狗微信
+  </footer>
+</div>
+</body>
+</html>
