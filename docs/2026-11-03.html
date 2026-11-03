@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026-11-03</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "SF Pro Display", "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  header {
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #f0f6fc;
+    margin-bottom: 6px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #8b949e;
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, #30363d, transparent);
+    margin: 28px 0;
+  }
+  .item {
+    padding: 18px 0;
+    border-bottom: 1px solid #21262d;
+  }
+  .item:last-of-type { border-bottom: none; }
+  .item-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .item-num {
+    font-size: 15px;
+    font-weight: 700;
+    color: #8b949e;
+    min-width: 28px;
+  }
+  .item-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #58a6ff;
+    text-decoration: none;
+    flex: 1;
+    line-height: 1.4;
+  }
+  .item-title:hover { color: #79c0ff; text-decoration: underline; }
+  .item-source {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .item-analysis {
+    font-size: 13.5px;
+    color: #8b949e;
+    line-height: 1.7;
+    padding-left: 38px;
+  }
+  .stats {
+    margin-top: 40px;
+    padding: 20px 24px;
+    background: #161b22;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    font-size: 13px;
+    color: #8b949e;
+  }
+  .stats strong { color: #e6edf3; }
+  footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 12px;
+    color: #484f58;
+  }
+  footer a { color: #484f58; text-decoration: none; }
+  footer a:hover { color: #8b949e; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🤖 AI 日报</h1>
+    <div class="meta">2026-11-03 · 由 MiniMax M2.7 精选 · 工作日 10:00 自动更新</div>
+  </header>
+
+  <div class="divider"></div>
+
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">1.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2611.03406v1" target="_blank">From Reactive to Agentic Resilience: Multi-Timescale AI-RAN Orchestration Under Signaling Storms</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 该研究提出面向 AI-RAN 信号风暴的多时间尺度智能编排机制，通过分层控制环提升开放 RAN 在复杂通信环境中的服务连续性。业务分析师可借鉴其分层降级、动态调度与韧性设计思路，用于构建企业级 AI 系统的稳定性评估框架。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">2.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2611.03330v1" target="_blank">The SIMPLE Law for Energy Cost of LLM Inference</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 该研究分析 KV-cache 对 LLM 推理能耗的影响，指出生成序列越长，后续 token 的边际成本会呈非线性增长。业务分析师评估 AI 产品成本时，应同时考虑上下文长度、缓存命中率和模型路由，而非只比较单 token 报价。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">3.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2611.03308v1" target="_blank">LLMs Depend on Specialist Tools for Out-of-Distribution Generalization in MS/MS Structural Elucidation</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 该研究验证前沿 LLM 在 MS/MS 新颖结构解析任务中的分布外泛化能力，并发现其表现高度依赖专业工具。业务分析师可据此区分基础模型与工具系统的贡献，在选型时重点评估专业工具集成、结果验证和异常场景覆盖率。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">4.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2611.02839v1" target="_blank">CARE: Grounded Recursive Self-Improvement for Production Customer-Service Agents</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 CARE 框架可将客服 Agent 积累的生产经验转化为可靠的模型更新，同时适应不断变化的业务政策，形成基于真实反馈的递归改进闭环。业务分析师可参考其日志沉淀、评测、策略更新与再验证机制，设计客服 AI 的持续优化流程。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">5.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2611.03647v1" target="_blank">Pixel-UMI: Learning Environment-Aware Whole-Body Manipulation from Sensorized Human Demonstrations</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 Pixel-UMI 通过传感器化的人类演示学习环境感知的全身操控策略，重点解决机器人与人类形态差异带来的迁移难题。业务分析师在设计 AI 落地流程时可借鉴其思路，重视真实场景采样、差异建模以及演示数据向业务动作的转换。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">6.</span>
+                <a class="item-title" href="https://arxiv.org/abs/2611.03648v1" target="_blank">Pixel: A Co-Designed Full-Stack Robot System for Learning General-Purpose Mobile Manipulation</a>
+                <span class="item-source" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">🔬 AI底层技术</span>
+            </div>
+            <div class="item-analysis">💡 Pixel 是一个软硬件协同设计的通用移动操控系统，将机器人硬件、演示采集、全身控制和策略学习整合为完整技术栈。该研究提示业务分析师评估 AI 产品时应从全栈视角分析性能与成本，避免只依据单一模型或算法指标作出判断。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">7.</span>
+                <a class="item-title" href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgS222jsLHund6CwyAsJJVG2mT7PxuvZF4pVqXa8Fplpd9SmXYTcPb3soL7xzxkFRnc46w5FeSDjhIif67Nn5SwPUEaimH6lo0CdzQi30359f_YnOFgiPjRT8SraaXrZebaJYpAObrZaCmxJRK691dBmscf897zMB-1e6OhHW5lC2csa3g6S8KTlZmZd973fvveg3RmF5OF51YaIlIld5Ee8lFkDr8IT4KYw..&amp;type=2&amp;query=%E9%87%8F%E5%AD%90%E4%BD%8D AI&amp;token=F22769A229FA4A47C1C69E9ABA8830D1C1F81B876AE9A277" target="_blank">AI 能查到数据,为何还用不好?从量子位智库报告看网易智企的实践 ⭐</a>
+                <span class="item-source" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f644">🛠 AI工具应用</span>
+            </div>
+            <div class="item-analysis">💡 文章结合量子位智库报告与网易智企实践，分析 AI 虽能访问数据却难以有效使用的原因，并介绍 AI 自动拉取预算和实际数据、识别偏差及生成建议的流程，使相关分析耗时缩短至约 10 分钟。业务分析师可据此优化指标取数、偏差诊断和分析建议工作流，同时重点验证数据口径与结论可靠性。</div>
+        </div>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-num">8.</span>
+                <a class="item-title" href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgS222jsLHund6CwyAsJJVG2mT7PxuvZF4pVqXa8Fplpd9SmXYTcPb3soL7xzxkFRnc46w5FeSDjhIif67Nn5SwPUEaimH6lo0CdzQi30359f_YnOFgiPjRT8SraaXrZebaJYpAObrZaCmxJRK691dBmscf897zMB-1e6OhHW5lC2csa3g6S8KTlZmZd973fvveg3RmF5OF51YaIlIld5Ee8lFkDr8IT4KYw..&amp;type=2&amp;query=%E9%87%8F%E5%AD%90%E4%BD%8D AI&amp;token=F22769A229FA4A47C1C69E9ABA8830D1C1F81B876AE9A277" target="_blank">量子位智库报告:AI落地先夯实数据底座 ⭐</a>
+                <span class="item-source" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f644">🛠 AI工具应用</span>
+            </div>
+            <div class="item-analysis">💡 量子位智库发布企业智能化相关报告，指出 AI 能够访问数据并不等于能够理解数据，指标口径不一致和语义不统一会直接影响 Agent 的分析质量。业务分析师应优先推动指标字典、语义层和数据治理建设，再评估 AI 自动化带来的实际收益。</div>
+        </div>
+
+  <div class="stats">
+    📊 今日精选 <strong>8 条</strong>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    来源分布: 公众号 8
+  </div>
+
+  <footer>
+    数据来源：量子位 · 机器之心 · 36氪 · 通往AGI之路 · 数字生命卡兹克 · arXiv · 搜狗微信
+  </footer>
+</div>
+</body>
+</html>
